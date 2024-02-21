@@ -25,3 +25,25 @@ func TestNewIRuleConfigParser(t *testing.T) {
 		assert.Nil(t, parser)
 	})
 }
+
+func TestJson(t *testing.T) {
+	parser := NewIRuleConfigParser("json")
+	if parser == nil {
+		t.Errorf("Expected non-nil value, but got nil")
+	}
+
+	data := []byte(`{"foo": "bar"}`)
+
+	parser.Parse(data)
+}
+
+func TestYaml(t *testing.T) {
+	parser := NewIRuleConfigParser("yaml")
+	if parser == nil {
+		t.Errorf("Expected non-nil value, but got nil")
+	}
+
+	data := []byte(`foo: bar`)
+
+	parser.Parse(data)
+}
